@@ -24,30 +24,7 @@ public class Player {
     	int ourCall = currentByIn - ourBet;
     	int round = gameState.get("round").getAsInt();
     	
-    	if (ourStack > 4000) {
-    		return 0;
-    	}
-    	if (distance == 0) {
-    		switch (round) {
-    		case 0: return gameState.get("small_blind").getAsInt();
-    		case 1:
-    		case 2:
-    		case 3:
-    			return ourMinimumRaise;
-    		}
-    	} else {
-    		switch (round) {
-    		case 0:
-    		case 1:
-    		case 2:
-    		case 3:
-    			return ourCall;
-    		}
-    	}
-    	if (round == 4 && ourStack == 1000) {
-    		return 1000;
-    	}
-    	return ourMinimumRaise;
+	    return 0;
 //    	if (distance < 3) {
 //    		return ourMinimumRaise;
 //    	} else if (distance < 5) {

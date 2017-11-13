@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 
 public class Player {
 
-    static final String VERSION = "1.0";
+    static final String VERSION = "1.1";
 
     public static int betRequest(JsonElement request) {
     	JsonObject gameState = request.getAsJsonObject();
@@ -14,6 +14,8 @@ public class Player {
     	int minimumRaise = gameState.get("minimum_raise").getAsInt();
     	JsonArray players = gameState.get("players").getAsJsonArray();
     	int ourStack = getOurStack(players);
+    	int dealer = gameState.get("dealer").getAsInt();
+    	int firstPlayer = (dealer+1)%(players.size());
     	System.out.println("testlog:" + ourStack);
     	return ourStack;
 //    	JsonArray communityCards = gameState.get("community_cards").getAsJsonArray();
@@ -29,7 +31,7 @@ public class Player {
 		for (JsonElement eachPlayer : players) {
 			JsonObject player = eachPlayer.getAsJsonObject();
 			JsonElement playerName = player.get("name");
-			if (playerName.equals("Team Stuttgart")) {
+			if (playerName.getAsString().equals("Team Stuttgart")) {
 				return player.get("stack").getAsInt();
 			}
 		}
@@ -39,3 +41,4 @@ public class Player {
     public static void showdown(JsonElement game) {
     }
 }
+

@@ -1,15 +1,17 @@
 package org.leanpoker.player;
 
 import com.google.gson.JsonElement;
-
-import java.util.Map;
+import com.google.gson.JsonObject;
 
 public class Player {
 
     static final String VERSION = "Default Java folding player";
 
     public static int betRequest(JsonElement request) {
-        return 100 + (int) (Math.random()*66.0d);
+    	JsonObject gameState = request.getAsJsonObject();
+    	int currentByIn = gameState.get("current_buy_in").getAsInt();
+    	int minimumRaise = gameState.get("minimum_raise").getAsInt();
+        return currentByIn + minimumRaise + (int) (Math.random()*32.0d);
     }
 
     public static void showdown(JsonElement game) {

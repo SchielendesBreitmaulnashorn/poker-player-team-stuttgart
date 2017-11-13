@@ -26,7 +26,7 @@ public class Player {
     	} else if (distance < 5) {
     		return ourMinimumRaise + 100;
     	} else {
-    		return ourMinimumRaise + 200;
+    		return ourStack;
     	}
 //    	System.out.println("state:" + "dealer=" + dealer + ", firstPlayer=" + firstPlayer + ", ourPlayer=" + ourPlayer + ", distance=" + distance);
 //    	switch (distance) {
